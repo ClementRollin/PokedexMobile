@@ -59,7 +59,6 @@ const styles = StyleSheet.create({
     header: {
         color: '#3b4cca',
         fontSize: 22,
-        marginBottom: 20,
     },
     teamGrid: {
         flexDirection: 'row',
@@ -81,6 +80,7 @@ const styles = StyleSheet.create({
         color: '#3b4cca',
     },
     button: {
+        marginTop: 20,
         backgroundColor: '#3b4cca',
         borderRadius: 5,
         padding: 10,
