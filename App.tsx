@@ -1,11 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import PokeList from './components/PokeList';
 
-export default function App() {
+function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text style={styles.header}>Pokedex</Text>
+      <PokeList />
     </View>
   );
 }
@@ -13,8 +14,14 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    justifyContent: 'center', 
     alignItems: 'center',
-    justifyContent: 'center',
+  },
+  header: {
+    marginTop: 40,
+    fontSize: 24,
+    marginBottom: 20,
   },
 });
+
+export default App;
