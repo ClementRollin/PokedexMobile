@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, Text, Image, TouchableOpacity, ScrollView, StyleSheet, Button } from 'react-native';
+import { View, Text, Image, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import axios from 'axios';
 import { Pokemon } from './PokeList';
 import React from 'react';
@@ -81,33 +81,48 @@ const EvolutionPopup: React.FC<EvolutionPopupProps> = ({ pokemonDetails, onClose
     return (
         <View style={styles.backdrop}>
             <View style={styles.evolutionPopup}>
-                <Text style={styles.header}>Détails du Pokémon</Text>
-                <View style={styles.pokemonId}>
-                    <Image source={{ uri: pokemonDetails.imageUrl }} style={styles.image} />
-                    <Text>Types: {pokemonDetails.types.join(', ')}</Text>
-                    {team.includes(pokemonDetails.name) ? (
-                        <Text style={styles.texteEquipe}>Ce Pokémon fait déjà partie de votre équipe.</Text>
-                    ) : (
-                        <TouchableOpacity style={styles.button} onPress={() => onAddToTeam(pokemonDetails.name)}>
-                            <Text>Ajouter à mon équipe</Text>
-                        </TouchableOpacity>
-                    )}
-                </View>
-                <ScrollView horizontal={true} contentContainerStyle={styles.evolutionContainer}>
-                    {isLoading ? (
-                        <Text>Chargement des évolutions...</Text>
-                    ) : (
-                        evolutionDetails.map((evolution, index) => (
-                            <View key={index} style={styles.evolutionItem}>
-                                <Image source={{ uri: evolution.imageUrl }} style={styles.image} />
-                                <Text>{evolution.name}</Text>
-                            </View>
-                        ))
-                    )}
+                <ScrollView>
+                    <Text style={styles.header}>Détails du Pokémon</Text>
+                    <View style={styles.pokemonId}>
+                        <Image source={{ uri: pokemonDetails.imageUrl }} style={styles.image} />
+                        <Text>Types: {pokemonDetails.types.join(', ')}</Text>
+                        {team.includes(pokemonDetails.name) ? (
+                            <Text style={styles.texteEquipe}>Ce Pokémon fait déjà partie de votre équipe.</Text>
+                        ) : (
+                            <TouchableOpacity style={styles.button} onPress={() => onAddToTeam(pokemonDetails.name)}>
+                                <Text>Ajouter à mon équipe</Text>
+                            </TouchableOpacity>
+                        )}
+                    </View>
+                    <View>
+                        <Text style={styles.header}>Statistiques</Text>
+                        <View style={styles.statsContent}>
+                            {Object.entries(pokemonDetails.stats || {}).map(([statName, statValue]) => (
+                                <View style={styles.statsPokemon} key={statName}>
+                                    <Text style={styles.statText}>{statName}: {statValue}</Text>
+                                    <View style={styles.statBar}>
+                                        <View style={[styles.statBarFill, { width: `${(statValue / 150) * 100}%` }]} />
+                                    </View>
+                                </View>
+                            ))}
+                        </View>
+                    </View>
+                    <ScrollView horizontal={true} contentContainerStyle={styles.evolutionContainer}>
+                        {isLoading ? (
+                            <Text>Chargement des évolutions...</Text>
+                        ) : (
+                            evolutionDetails.map((evolution, index) => (
+                                <View key={index} style={styles.evolutionItem}>
+                                    <Image source={{ uri: evolution.imageUrl }} style={styles.image} />
+                                    <Text>{evolution.name}</Text>
+                                </View>
+                            ))
+                        )}
+                    </ScrollView>
+                    <TouchableOpacity onPress={onClose} style={styles.button}>
+                        <Text>Fermer</Text>
+                    </TouchableOpacity>
                 </ScrollView>
-                <TouchableOpacity onPress={onClose} style={styles.button}>
-                    <Text>Fermer</Text>
-                </TouchableOpacity>
             </View>
         </View>
     );
@@ -147,6 +162,8 @@ const styles = StyleSheet.create({
         color: '#3b4cca',
         fontSize: 22,
         fontWeight: 'bold',
+        textAlign: 'center',
+        marginBottom: 10,
     },
     pokemonId: {
         alignItems: 'center',
@@ -169,6 +186,34 @@ const styles = StyleSheet.create({
     texteEquipe: {
         color: 'red',
         marginTop: 10,
+    },
+    statsContent: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    statsPokemon: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginVertical: 10,
+    },
+    statText: {
+        width: '45%',
+        textAlign: 'right',
+    },
+    statBar: {
+        width: 150,
+        height: 20,
+        backgroundColor: '#ffcb05',
+        borderRadius: 20,
+    },
+    statBarFill: {
+        height: '100%',
+        backgroundColor: '#007BFF',
+        borderRadius: 20,
     },
 });
 

@@ -442,8 +442,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         width: '100%',
-        backgroundColor: '#3b4cca', 
-        padding: '5%',
+        backgroundColor: '#3b4cca',
+        paddingBottom: '2%',
+        paddingTop: '2%',
+        paddingLeft: '5%',
+        paddingRight: '5%',
     },
     pageButton: {
         backgroundColor: '#ffcb05', 
