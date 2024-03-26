@@ -79,8 +79,8 @@ const EvolutionPopup: React.FC<EvolutionPopupProps> = ({ pokemonDetails, onClose
     }, [pokemonDetails]);
 
     return (
-        <View style={styles.backdrop}>
-            <View style={styles.evolutionPopup}>
+        <View style={styles.backdrop} onStartShouldSetResponder={() => { onClose(); return true; }}>
+            <View style={styles.evolutionPopup} onStartShouldSetResponder={() => true}>
                 <ScrollView>
                     <Text style={styles.header}>Détails du Pokémon</Text>
                     <View style={styles.pokemonId}>
