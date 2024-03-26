@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, Image, TouchableOpacity, ScrollView, StyleSheet, } from 'react-native';
+import { useState, useEffect } from 'react';
+import { View, Text, Image, TouchableOpacity, ScrollView, StyleSheet, Button } from 'react-native';
 import axios from 'axios';
 import { Pokemon } from './PokeList';
+import React from 'react';
 
 interface EvolutionNode {
     species: {
@@ -22,9 +23,10 @@ interface EvolutionPopupProps {
     onClose: () => void;
     onAddToTeam: (pokemonName: string) => void;
     pokemonId: string;
+    team: string[];
 }
 
-const EvolutionPopup: React.FC<EvolutionPopupProps> = ({ pokemonDetails, onClose, onAddToTeam }) => {
+const EvolutionPopup: React.FC<EvolutionPopupProps> = ({ pokemonDetails, onClose, onAddToTeam, team }) => {
     const [evolutionDetails, setEvolutionDetails] = useState<EvolutionDetail[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -83,9 +85,13 @@ const EvolutionPopup: React.FC<EvolutionPopupProps> = ({ pokemonDetails, onClose
                 <View style={styles.pokemonId}>
                     <Image source={{ uri: pokemonDetails.imageUrl }} style={styles.image} />
                     <Text>Types: {pokemonDetails.types.join(', ')}</Text>
-                    <TouchableOpacity onPress={() => onAddToTeam(pokemonDetails.name)} style={styles.button}>
-                        <Text>Ajouter à mon équipe</Text>
-                    </TouchableOpacity>
+                    {team.includes(pokemonDetails.name) ? (
+                        <Text style={styles.texteEquipe}>Ce Pokémon fait déjà partie de votre équipe.</Text>
+                    ) : (
+                        <TouchableOpacity style={styles.button} onPress={() => onAddToTeam(pokemonDetails.name)}>
+                            <Text>Ajouter à mon équipe</Text>
+                        </TouchableOpacity>
+                    )}
                 </View>
                 <ScrollView horizontal={true} contentContainerStyle={styles.evolutionContainer}>
                     {isLoading ? (
@@ -160,7 +166,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginVertical: 10,
     },
-    // Add additional styles as needed
+    texteEquipe: {
+        color: 'red',
+        marginTop: 10,
+    },
 });
 
 export default EvolutionPopup;

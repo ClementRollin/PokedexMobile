@@ -340,6 +340,7 @@ const PokeList = () => {
                             pokemonDetails={selectedPokemon}
                             onClose={handleClosePopup}
                             onAddToTeam={handleAddToTeam}
+                            team={team}
                         />
                     )}
                     {showTeamPopup && (
