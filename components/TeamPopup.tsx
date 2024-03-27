@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { Pokemon } from './PokeList';
+import CapturePokemon from './CapturePokemon';
 
 interface TeamPopupProps {
     team: string[];
@@ -9,10 +10,25 @@ interface TeamPopupProps {
 }
 
 const TeamPopup: React.FC<TeamPopupProps> = ({ team, pokemons, onClose }) => {
+    const [isCapturePopupOpen, setIsCapturePopupOpen] = useState(false);
+
+    const openCapturePopup = () => {
+        setIsCapturePopupOpen(true);
+    };
+
+    const closeCapturePopup = () => {
+        setIsCapturePopupOpen(false);
+    };
+
     return (
         <View style={styles.backdrop}>
             <View style={styles.teamPopup}>
-                <Text style={styles.header}>Mon équipe</Text>
+                <View style={styles.headerContainer}>
+                    <Text style={styles.header}>Mon équipe</Text>
+                    <TouchableOpacity style={styles.captureButton} onPress={openCapturePopup}>
+                        <Text style={styles.captureButtonText}>Capturer</Text>
+                    </TouchableOpacity>
+                </View>
                 <View style={styles.teamGrid}>
                     {team.map(pokemonName => {
                         const pokemon = pokemons.find(p => p.name === pokemonName);
@@ -28,6 +44,7 @@ const TeamPopup: React.FC<TeamPopupProps> = ({ team, pokemons, onClose }) => {
                     <Text style={styles.buttonText}>Fermer</Text>
                 </TouchableOpacity>
             </View>
+            {isCapturePopupOpen && <CapturePokemon onClose={closeCapturePopup} />}
         </View>
     );
 };
@@ -43,6 +60,20 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    headerContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%',
+      },
+      captureButton: {
+        backgroundColor: '#ffcb05',
+        padding: 10,
+        borderRadius: 5,
+      },
+      captureButtonText: {
+        color: 'black',
+      },
     teamPopup: {
         width: '80%',
         maxHeight: '80%',
@@ -80,7 +111,7 @@ const styles = StyleSheet.create({
         color: '#3b4cca',
     },
     button: {
-        marginTop: 20,
+        marginTop: 10,
         backgroundColor: '#3b4cca',
         borderRadius: 5,
         padding: 10,
