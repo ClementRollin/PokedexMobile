@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { Pokemon } from './PokeList';
-import CapturePokemon from './CapturePokemon';
 
 interface TeamPopupProps {
     team: string[];
@@ -25,9 +24,6 @@ const TeamPopup: React.FC<TeamPopupProps> = ({ team, pokemons, onClose }) => {
             <View style={styles.teamPopup}>
                 <View style={styles.headerContainer}>
                     <Text style={styles.header}>Mon équipe</Text>
-                    <TouchableOpacity style={styles.captureButton} onPress={openCapturePopup}>
-                        <Text style={styles.captureButtonText}>Capturer</Text>
-                    </TouchableOpacity>
                 </View>
                 <View style={styles.teamGrid}>
                     {team.map(pokemonName => {
@@ -44,7 +40,6 @@ const TeamPopup: React.FC<TeamPopupProps> = ({ team, pokemons, onClose }) => {
                     <Text style={styles.buttonText}>Fermer</Text>
                 </TouchableOpacity>
             </View>
-            {isCapturePopupOpen && <CapturePokemon onClose={closeCapturePopup} />}
         </View>
     );
 };
@@ -62,17 +57,9 @@ const styles = StyleSheet.create({
     },
     headerContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
-      },
-      captureButton: {
-        backgroundColor: '#ffcb05',
-        padding: 10,
-        borderRadius: 5,
-      },
-      captureButtonText: {
-        color: 'black',
       },
     teamPopup: {
         width: '80%',
