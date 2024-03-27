@@ -3,9 +3,9 @@ import { View, Text, StyleSheet } from 'react-native';
 import PokeList from './components/PokeList';
 
 function App() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Pokedex</Text>
+    return (
+        <View style={styles.container}>
+            <Text style={styles.header}>Pokedex</Text>
       <PokeList />
     </View>
   );
