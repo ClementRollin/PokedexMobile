@@ -9,15 +9,6 @@ interface TeamPopupProps {
 }
 
 const TeamPopup: React.FC<TeamPopupProps> = ({ team, pokemons, onClose }) => {
-    const [isCapturePopupOpen, setIsCapturePopupOpen] = useState(false);
-
-    const openCapturePopup = () => {
-        setIsCapturePopupOpen(true);
-    };
-
-    const closeCapturePopup = () => {
-        setIsCapturePopupOpen(false);
-    };
 
     return (
         <View style={styles.backdrop}>
