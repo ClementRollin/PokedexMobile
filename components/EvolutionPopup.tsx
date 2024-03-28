@@ -117,6 +117,14 @@ const EvolutionPopup: React.FC<EvolutionPopupProps> = ({ pokemonDetails, onClose
                         <TouchableOpacity onPress={openComparisonModal} style={styles.button}>
                             <Text>Comparer</Text>
                         </TouchableOpacity>
+                        { team.includes(pokemonDetails.name) ? (
+                            <Text style={styles.texteEquipe}>Ce Pokémon est déjà dans votre équipe</Text>
+                        ) : (
+                            <TouchableOpacity onPress={() => onAddToTeam(pokemonDetails.name)} style={styles.button}>
+                                <Text>Ajouter à l'équipe</Text>
+                            </TouchableOpacity>
+                        
+                        )}
                         <Modal visible={comparisonModalVisible} onRequestClose={closeComparisonModal} style={styles.modal}>
                             <ScrollView>
                                 {comparisonScreen ? (

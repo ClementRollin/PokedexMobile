@@ -171,8 +171,8 @@ const PokeList = () => {
         setTeam(randomTeam);
         try {
             await AsyncStorage.setItem('team', JSON.stringify(randomTeam));
-        } catch (e) {
-            console.error("Error saving team", e);
+        } catch (error) {
+            console.error("Error saving team", error);
         }
     };
     
@@ -261,6 +261,17 @@ const PokeList = () => {
                             value={searchTerm}
                             onChangeText={setSearchTerm}
                         />
+                        {searchTerm !== '' && (
+                            <ScrollView style={styles.searchResults}>
+                                {pokemons
+                                .filter(pokemon => pokemon.name.toLowerCase().startsWith(searchTerm.toLowerCase()))
+                                .map(pokemon => (
+                                    <TouchableOpacity key={pokemon.name} onPress={() => handleViewEvolutions(pokemon)}>
+                                    <Text>{pokemon.name}</Text>
+                                    </TouchableOpacity>
+                                ))}
+                            </ScrollView>
+                        )}
                     </View>
                     <View style={styles.filterBar}>
                         <Picker
@@ -376,6 +387,15 @@ const styles = StyleSheet.create({
         borderColor: '#ffcb05',
         borderRadius: 5,
         fontSize: 12,
+    },
+    searchResults: {
+        maxHeight: 150,
+        width: '80%',
+        backgroundColor: '#f8f8f8',
+        position: 'absolute',
+        zIndex: 5,
+        top: 46,
+        padding: '3%',
     },
     filterBar: {
         flexDirection: 'row',
