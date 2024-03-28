@@ -18,7 +18,7 @@ export interface Pokemon {
     allPokemons: Pokemon[];
 }
 
-const ITEMS_PER_PAGE = 8;
+const ITEMS_PER_PAGE = 6;
 
 const PokeList = () => {
     const [pokemons, setPokemons] = useState<Pokemon[]>([]);
@@ -389,7 +389,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
     },
     searchResults: {
-        maxHeight: 150,
+        maxHeight: 85,
         width: '80%',
         backgroundColor: '#f8f8f8',
         position: 'absolute',
@@ -403,11 +403,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         width: '75%',
         height: 200,
-        marginVertical: '5%',
+        marginTop: '20%',
+        marginBottom: '5%',
     },
     picker: {
         width: '100%',
-        height: 20,
         backgroundColor: '#3b4cca',
         color: '#ffffff',
         fontSize: 12,
