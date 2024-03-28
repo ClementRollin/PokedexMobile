@@ -274,21 +274,13 @@ const PokeList = () => {
                         )}
                     </View>
                     <View style={styles.filterBar}>
-                        <Picker
-                            selectedValue={typeFilter}
-                            onValueChange={(itemValue) => setTypeFilter(itemValue)}
-                            style={styles.picker}
-                        >
+                        <Picker selectedValue={typeFilter} onValueChange={(itemValue) => setTypeFilter(itemValue)} style={styles.picker}>
                             <Picker.Item label="Types" value="" />
                             {pokemonTypes.map(type => (
                                 <Picker.Item key={type} label={type} value={type} />
                             ))}
                         </Picker>
-                        <Picker
-                            selectedValue={sortOrder}
-                            onValueChange={(itemValue) => setSortOrder(itemValue)}
-                            style={styles.picker}
-                        >
+                        <Picker selectedValue={sortOrder} onValueChange={(itemValue) => setSortOrder(itemValue)} style={styles.picker}>
                             <Picker.Item label="Trier par..." value="" />
                             <Picker.Item label="Ordre alphabétique (A-Z)" value="asc" />
                             <Picker.Item label="Ordre alphabétique inversé (Z-A)" value="desc" />
