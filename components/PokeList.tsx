@@ -31,6 +31,7 @@ const PokeList = () => {
     const [sortOrder, setSortOrder] = useState<string | null>(null);
     const [team, setTeam] = useState<string[]>([]);
     const [showTeamPopup, setShowTeamPopup] = useState(false);
+    const [allDataLoaded, setAllDataLoaded] = useState(false);
 
     const pokemonTypes = ['feu', 'eau', 'plante', 'vol', 'insecte', 'poison', 'normal', 'électrik', 'sol', 'fée', 'combat', 'psy', 'roche', 'acier', 'glace', 'spectre'];
 
@@ -52,8 +53,6 @@ const PokeList = () => {
         'glace': 'ice',
         'spectre': 'ghost'
     };
-
-    const [allDataLoaded, setAllDataLoaded] = useState(false);
 
     useEffect(() => {
         const fetchPokemons = async () => {

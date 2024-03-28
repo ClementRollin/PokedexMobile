@@ -30,7 +30,6 @@ interface EvolutionPopupProps {
 const EvolutionPopup: React.FC<EvolutionPopupProps> = ({ pokemonDetails, onClose, onAddToTeam, team, allPokemons }) => {
     const [evolutionDetails, setEvolutionDetails] = useState<EvolutionDetail[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-
     const [comparisonModalVisible, setComparisonModalVisible] = useState(false);
     const [comparisonPokemon, setComparisonPokemon] = useState<Pokemon | null>(null);
     const [comparisonScreen, setComparisonScreen] = useState(false);
