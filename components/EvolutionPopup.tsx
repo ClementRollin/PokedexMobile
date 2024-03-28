@@ -130,34 +130,34 @@ const EvolutionPopup: React.FC<EvolutionPopupProps> = ({ pokemonDetails, onClose
                                 {comparisonScreen ? (
                                     comparisonPokemon && (
                                         <View style={styles.comparisonContainer}>
-                                        <View style={styles.comparisonItem}>
-                                            <Image source={{ uri: pokemonDetails.imageUrl }} style={styles.image} />
-                                            <Text>{pokemonDetails.name}</Text>
-                                            <View style={styles.statsContent}>
-                                            {Object.entries(pokemonDetails.stats || {}).map(([statName, statValue]) => (
-                                                <View style={styles.statsPokemonCompare} key={statName}>
-                                                    <Text style={styles.statText}>{statName}: {statValue}</Text>
-                                                    <View style={styles.statBar}>
-                                                        <View style={[styles.statBarFill, { width: `${(statValue / 150) * 100}%` }]} />
+                                            <View style={styles.comparisonItem}>
+                                                <Image source={{ uri: pokemonDetails.imageUrl }} style={styles.image} />
+                                                <Text>{pokemonDetails.name}</Text>
+                                                <View style={styles.statsContent}>
+                                                {Object.entries(pokemonDetails.stats || {}).map(([statName, statValue]) => (
+                                                    <View style={styles.statsPokemonCompare} key={statName}>
+                                                        <Text style={styles.statText}>{statName}: {statValue}</Text>
+                                                        <View style={styles.statBar}>
+                                                            <View style={[styles.statBarFill, { width: `${(statValue / 150) * 100}%` }]} />
+                                                        </View>
                                                     </View>
+                                                ))}
                                                 </View>
-                                            ))}
                                             </View>
-                                        </View>
-                                        <View style={styles.comparisonItem}>
-                                            <Image source={{ uri: comparisonPokemon.imageUrl }} style={styles.image} />
-                                            <Text>{comparisonPokemon.name}</Text>
-                                            <View style={styles.statsContent}>
-                                            {Object.entries(comparisonPokemon.stats || {}).map(([statName, statValue]) => (
-                                                <View style={styles.statsPokemonCompare} key={statName}>
-                                                    <Text style={styles.statText}>{statName}: {statValue}</Text>
-                                                    <View style={styles.statBar}>
-                                                        <View style={[styles.statBarFill, { width: `${(statValue / 150) * 100}%` }]} />
+                                            <View style={styles.comparisonItem}>
+                                                <Image source={{ uri: comparisonPokemon.imageUrl }} style={styles.image} />
+                                                <Text>{comparisonPokemon.name}</Text>
+                                                <View style={styles.statsContent}>
+                                                {Object.entries(comparisonPokemon.stats || {}).map(([statName, statValue]) => (
+                                                    <View style={styles.statsPokemonCompare} key={statName}>
+                                                        <Text style={styles.statText}>{statName}: {statValue}</Text>
+                                                        <View style={styles.statBar}>
+                                                            <View style={[styles.statBarFill, { width: `${(statValue / 150) * 100}%` }]} />
+                                                        </View>
                                                     </View>
+                                                ))}
                                                 </View>
-                                            ))}
                                             </View>
-                                        </View>
                                         </View>
                                     )
                                 ) : (
