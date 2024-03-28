@@ -262,7 +262,7 @@ const PokeList = () => {
                             onChangeText={setSearchTerm}
                         />
                         {searchTerm !== '' && (
-                            <View style={styles.searchResults}>
+                            <ScrollView style={styles.searchResults}>
                                 {pokemons
                                 .filter(pokemon => pokemon.name.toLowerCase().startsWith(searchTerm.toLowerCase()))
                                 .map(pokemon => (
@@ -270,7 +270,7 @@ const PokeList = () => {
                                     <Text>{pokemon.name}</Text>
                                     </TouchableOpacity>
                                 ))}
-                            </View>
+                            </ScrollView>
                         )}
                     </View>
                     <View style={styles.filterBar}>
