@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView, StyleSheet, Modal } from 'react-native';
-import axios from 'axios';
+import axios, { all } from 'axios';
 import { Pokemon } from './PokeList';
 import React from 'react';
 
@@ -26,6 +26,7 @@ interface EvolutionPopupProps {
     team: string[];
     allPokemons: Pokemon[];
 }
+
 
 const EvolutionPopup: React.FC<EvolutionPopupProps> = ({ pokemonDetails, onClose, onAddToTeam, team, allPokemons }) => {
     const [evolutionDetails, setEvolutionDetails] = useState<EvolutionDetail[]>([]);
