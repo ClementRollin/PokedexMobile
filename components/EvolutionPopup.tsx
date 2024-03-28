@@ -162,7 +162,6 @@ const EvolutionPopup: React.FC<EvolutionPopupProps> = ({ pokemonDetails, onClose
                                         ))}
                                     </ScrollView>
                                 )}
-                            
                             </ScrollView>
                         </Modal>
                     </View>
