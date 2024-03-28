@@ -15,6 +15,7 @@ export interface Pokemon {
     imageUrl?: string;
     types: string[];
     stats?: { [key: string]: number };
+    allPokemons: Pokemon[];
 }
 
 const ITEMS_PER_PAGE = 8;
@@ -341,6 +342,7 @@ const PokeList = () => {
                             onClose={handleClosePopup}
                             onAddToTeam={handleAddToTeam}
                             team={team}
+                            allPokemons={pokemons}
                         />
                     )}
                     {showTeamPopup && (
